@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Digit Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            margin: 10px 0;
+            width: 60px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Random Digit Generator</h1>
+        <label for="minValue">Minimum Value:</label>
+        <input type="number" id="minValue" placeholder="Min">
+        <br>
+        <label for="maxValue">Maximum Value:</label>
+        <input type="number" id="maxValue" placeholder="Max">
+        <br>
+        <button onclick="generateRandomDigit()">Generate</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function generateRandomDigit() {
+            const minValue = parseInt(document.getElementById('minValue').value);
+            const maxValue = parseInt(document.getElementById('maxValue').value);
+            const resultDiv = document.getElementById('result');
+
+            if (isNaN(minValue) || isNaN(maxValue)) {
+                resultDiv.innerHTML = "Please enter valid numbers.";
+                return;
+            }
+
+            if (minValue > maxValue) {
+                resultDiv.innerHTML = "Minimum value must be less than or equal to the maximum value.";
+                return;
+            }
+
+            const randomDigit = Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue;
+            resultDiv.innerHTML = `Random Digit: ${randomDigit}`;
+        }
+    </script>
+</body>
+</html>
